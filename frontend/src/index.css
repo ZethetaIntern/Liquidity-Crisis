@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #030712;
+    color: #e2e8f0;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  /* Custom scrollbar for cyberpunk feel */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #030712;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
+}
+
+@layer utilities {
+  /* Neon text shadows */
+  .neon-text-green {
+    text-shadow: 0 0 5px rgba(34, 197, 94, 0.4), 0 0 10px rgba(34, 197, 94, 0.2);
+  }
+  .neon-text-red {
+    text-shadow: 0 0 5px rgba(239, 68, 68, 0.5), 0 0 15px rgba(239, 68, 68, 0.3);
+  }
+  .neon-text-purple {
+    text-shadow: 0 0 5px rgba(168, 85, 247, 0.5), 0 0 15px rgba(168, 85, 247, 0.3);
+  }
+
+  /* Premium Glowing Borders */
+  .neon-border-green {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.15), inset 0 0 10px rgba(34, 197, 94, 0.05);
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+  .neon-border-red {
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.25), inset 0 0 10px rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.4);
+  }
+  .neon-border-purple {
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.2), inset 0 0 10px rgba(168, 85, 247, 0.05);
+    border-color: rgba(168, 85, 247, 0.3);
+  }
+
+  /* Glassmorphism Panel cards */
+  .glass-panel {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+  }
+}
+
+/* CRT Screen Effects overlay */
+.crt-screen {
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-screen::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 9999;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Digital Grid Background */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+}
+
+/* scanline scan sweep anim */
+.scanline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(34, 197, 94, 0.02) 10%, rgba(34, 197, 94, 0.05) 50%, rgba(34, 197, 94, 0.02) 90%, transparent 100%);
+  opacity: 0.8;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+  z-index: 10;
+}
+
+/* CRT flickering simulation */
+@keyframes flicker {
+  0% { opacity: 0.99; }
+  50% { opacity: 0.96; }
+  100% { opacity: 0.98; }
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}

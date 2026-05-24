@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # 1. PostgreSQL Database Service
+  postgres:
+    image: postgres:15-alpine
+    container_name: liquidity_crisis_db
+    restart: always
+    environment:
+      POSTGRES_USER: quant_operator
+      POSTGRES_PASSWORD: super_secure_crisis_pass_2026
+      POSTGRES_DB: liquidity_crisis
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # 2. Redis Caching & PubSub Service
+  redis:
+    image: redis:7-alpine
+    container_name: liquidity_crisis_cache
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # 3. Express + Socket.io Backend Service
+  backend:
+    build: ./backend
+    container_name: liquidity_crisis_backend
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - DATABASE_URL=postgresql://quant_operator:super_secure_crisis_pass_2026@postgres:5432/liquidity_crisis
+      - JWT_SECRET=FINANCIAL_CRISIS_CRITICAL_SECRET_2026
+      - NODE_ENV=production
+    depends_on:
+      - postgres
+      - redis
+
+  # 4. React + Nginx Frontend Entrypoint
+  frontend:
+    build: ./frontend
+    container_name: liquidity_crisis_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

@@ -1,0 +1,34 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+web_resources/
+
+# Compilation builds
+dist/
+build/
+out/
+.next/
+
+# Local databases fallbacks
+.db/
+*.db
+*.sqlite
+
+# Environment parameters
+.env
+.env.local
+.env.production
+.env.development
+
+# Logs and system generation files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.system_generated/
+.gemini/
+brain/
+scratch/
+logs/
+task-*.log
+.system_generated/logs/
+.system_generated/tasks/
