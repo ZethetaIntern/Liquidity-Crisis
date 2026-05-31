@@ -127,7 +127,7 @@ export const AuthPage: React.FC = () => {
                   <input
                     type="email"
                     required
-                    placeholder="operator@sec.gov"
+                    placeholder="operator@zetheta.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-cyber-bg/50 border border-cyber-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyber-purple transition-all font-mono placeholder:text-gray-600"
@@ -170,7 +170,7 @@ export const AuthPage: React.FC = () => {
         {/* Footer info decals */}
         <div className="text-center mt-6">
           <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-            WARN: RESTRICTED ACCESS. UNAUTHORIZED INTERFERENCE MONITORED BY S.E.C. F.I.R.A.S.
+            WARN: RESTRICTED ACCESS. UNAUTHORIZED INTERFERENCE MONITORED BY ZETHETA RISK SYSTEMS.
           </span>
         </div>
 
