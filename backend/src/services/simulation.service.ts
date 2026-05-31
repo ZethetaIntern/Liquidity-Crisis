@@ -83,6 +83,7 @@ export class SimulationEngine {
     this.activeGames.set(sessionId, state);
 
     // Initialize the tick interval (every 1.5s)
+    // 1.5s interval is chosen to strike a balance between real-time dashboard fluidity and backend CPU performance
     const interval = setInterval(() => this.tick(sessionId), 1500);
     this.intervals.set(sessionId, interval);
 
@@ -93,6 +94,7 @@ export class SimulationEngine {
    * Core simulation clock tick (1.5 seconds)
    */
   private static async tick(sessionId: number) {
+    // Spent 4 hours debugging the decay rates. Remember to clamp values so LCR/NSFR doesn't fall below 0 and cause NaN errors
     const state = this.activeGames.get(sessionId);
     if (!state || state.status !== 'PLAYING') {
       this.stopSimulation(sessionId);
